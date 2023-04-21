@@ -1,0 +1,267 @@
+﻿@{
+    ViewData["Title"] = "HostDetail";
+    Layout = "~/Views/Shared/_LayoutHost.cshtml";
+}
+@model HostDetail
+<!-- ======= Intro Single ======= -->
+<section class="intro-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="title-single-box">
+                    <h1 class="title-single">@Model.ChuNha.TenChuNha</h1>
+                    <span class="color-text-a">Mã chủ nhà: @Model.ChuNha.MaChuNha</span>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Home" asp-action="Index">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Host" asp-action="Index">Chủ nhà</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            @Model.ChuNha.MaChuNha
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section><!-- End Intro Single -->
+<!-- ======= Agent Single ======= -->
+<section class="agent-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="agent-avatar-box">
+                            <img src="../Images/chu/@Model.ChuNha.AnhChuNha" alt="" class="agent-avatar img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-md-5 section-md-t3">
+                        <div class="agent-info-box">
+                            <div class="agent-title">
+                                <div class="title-box-d">
+                                    <h3 class="title-d">
+                                        @Model.ChuNha.TenChuNha
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="agent-content mb-3">
+                                <p class="content-d color-text-a">
+                                    @Model.ChuNha.MoTaChuNha
+                                </p>
+                                <div class="info-agents color-a">
+                                    <p>
+                                        <strong>Số điện thoại: </strong>
+                                        <span class="color-text-a">@Model.ChuNha.SdtchuNha</span>
+                                    </p>
+                                    <p>
+                                        <strong>Số điện thoại 2: </strong>
+                                        <span class="color-text-a">
+                                            @{
+                                                string str = "Không có";
+                                                if (Model.ChuNha.SdtchuNha2 != null)
+                                                {
+                                                    str = Model.ChuNha.SdtchuNha2;
+                                                }
+                                            }
+                                            @str
+                                        </span>
+                                    </p>
+                                    <p>
+                                        <strong>Email: </strong>
+                                        <span class="color-text-a">@Model.ChuNha.Email</span>
+                                    </p>
+                                    <p>
+                                        <strong>Địa chỉ: </strong>
+                                        <span class="color-text-a">@Model.ChuNha.DiaChi</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="socials-footer">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <a href="#" class="link-one">
+                                            <i class="bi bi-facebook" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#" class="link-one">
+                                            <i class="bi bi-twitter" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#" class="link-one">
+                                            <i class="bi bi-instagram" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#" class="link-one">
+                                            <i class="bi bi-linkedin" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 section-t8">
+                <div class="title-box-d">
+                    <h3 class="title-d">Nhà của @Model.ChuNha.TenChuNha</h3>
+                </div>
+            </div>
+            <div class="row property-grid grid">
+                <div class="col-sm-12">
+                    <div class="grid-option">
+                        <form>
+                            @{
+                                var getUrl = "https://localhost:7249/api/thongtinnhaapi/";
+                            }
+                            <select class="custom-select" onchange="showNha('@getUrl' + this.value + '/' + '@Model.ChuNha.MaChuNha')">
+                                <option selected">--Sắp xếp--</option>
+                                <option value="1">Từ cũ đến mới</option>
+                                <option value="2">Giá từ thấp tới cao</option>
+                                <option value="3">Giá từ cao tới thấp</option>
+                                <option value="4">Nhà chưa được thuê</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+                <div id="DisplayHouseByHost" class="row">
+                    @foreach (var item in Model.ThongTinNha)
+                    {
+                        <div class="col-md-4">
+                            <div class="card-box-a card-shadow">
+                                <div class="img-box-a">
+                                    <img src="../Images/@item.AnhMinhHoa" alt="" class="img-a img-fluid">
+                                </div>
+                                <div class="card-overlay">
+                                    <div class="card-overlay-a-content">
+                                        <div class="card-header-a">
+                                            <h2 class="card-title-a">
+                                                <a href="#">
+                                                    Mã nhà: @item.MaNha
+                                                    <br /> @item.DiaChiNha
+                                                </a>
+                                            </h2>
+                                        </div>
+                                        <div class="card-body-a">
+                                            <div class="price-box d-flex">
+                                                <span class="price-a">Giá phòng | @item.GiaPhong.ToString("#,##0") VND</span>
+                                            </div>
+                                            <a asp-controller="House" asp-action="HouseDetail" asp-route-MaNha="@item.MaNha" class="link-a">
+                                                Nhấn để xem chi tiết
+                                                <span class="bi bi-chevron-right"></span>
+                                            </a>
+                                        </div>
+                                        <div class="card-footer-a">
+                                            <ul class="card-info d-flex justify-content-around">
+                                                <li>
+                                                    <h4 class="card-info-title">Diện tích</h4>
+                                                    <span>
+                                                        @item.DienTich
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Tiền điện</h4>
+                                                    <span>@item.TienDien.ToString("#,##0") VND</span>
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Tiền nước</h4>
+                                                    <span>@item.TienNuoc.ToString("#,##0") VND</span>
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Tiền đặt cọc</h4>
+                                                    <span>@item.TienDatCoc.ToString("#,##0") VND</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End Agent Single -->
+
+<script>
+    function showNha(getUrl) {
+        var str = '';
+        $.ajax({
+            type: 'GET',
+            url: getUrl,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data)
+                $.each(data, function (key, val) {
+                    str += `<div class="col-md-4">
+                            <div class="card-box-a card-shadow">
+                                <div class="img-box-a">
+                                            <img src="../Images/${val.anhMinhHoa}" alt="" class="img-a img-fluid">
+                                </div>
+                                <div class="card-overlay">
+                                    <div class="card-overlay-a-content">
+                                        <div class="card-header-a">
+                                            <h2 class="card-title-a">
+                                                <a href="#">
+                                                        Mã nhà: ${val.maNha}
+                                                    <span class="color-b">
+                                                            <br> ${val.diaChiNha}
+                                                    </span>
+                                                </a>
+                                            </h2>
+                                        </div>
+                                        <div class="card-body-a">
+                                            <div class="price-box d-flex">
+                                                        <span class="price-a">Giá phòng | ${val.giaPhong.toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 0 })} VND</span>
+                                            </div>
+                                                        <a href="https://localhost:7249/House/HouseDetail?MaNha=`+ `${val.maNha}" class="link-a">
+                                                Nhấn để xem chi tiết
+                                                <span class="bi bi-chevron-right"></span>
+                                            </a>
+                                        </div>
+                                        <div class="card-footer-a">
+                                            <ul class="card-info d-flex justify-content-around">
+                                                <li>
+                                                    <h4 class="card-info-title">Diện tích</h4>
+                                                    <span>
+            ${val.dienTich}
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Tiền điện</h4>
+                                                            <span>${val.tienDien.toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 0 })} VND</span>
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Tiền nước</h4>
+                                                            <span>${val.tienNuoc.toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 0 })} VND</span>
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Tiền đặt cọc</h4>
+                                                        <span>${val.tienDatCoc.toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 0 })} VND</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`
+                });
+                $('#DisplayHouseByHost').html(str);
+            },
+            Error: function (xhr) {
+                alert(xhr.responseText)
+            }
+        });
+    }
+</script>
+

@@ -1,0 +1,164 @@
+﻿@using QLTN.Models;
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<ThongTinNha>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "ThongTinNha";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Thông tin nhà</h1>
+<p>@TempData["Message"]</p>
+<p>
+    <a class="btn btn-primary" asp-action="ThemNha">Thêm mới</a>
+</p>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr class="table-danger">
+                <th>
+                    @Html.DisplayNameFor(model => model[0].MaNha)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].DiaChiNha)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].DienTich)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].GiaPhong)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].TienDien)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].TienNuoc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].TienDatCoc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].TinhTrangThue)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].AnhMinhHoa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].NgayDangTai)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].MoTaNha)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].MaChuNha)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].MaDtsd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].MaLoai)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].MaMdsd)
+                </th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 1;
+            }
+            @foreach (var item in Model)
+            {
+                i = i + 1;
+                string cls = "table-info";
+                if (i % 2 == 0)
+                {
+                    cls = "table-success";
+                }
+                <tr class="@cls">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaNha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaChiNha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DienTich)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GiaPhong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TienDien)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TienNuoc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TienDatCoc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TinhTrangThue)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AnhMinhHoa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayDangTai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MoTaNha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaChuNha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaDtsd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaLoai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaMdsd)
+                    </td>
+                    <td>
+                        <a asp-action="SuaNha" asp-route-id="@item.MaNha">Sửa</a> |
+                        <a asp-action="XoaNha" asp-route-id="@item.MaNha">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="product__pagination" style="margin-top:30px">
+        @Html.PagedListPager(Model, page=>Url.Action("ThongTinNha", new{page=page}))
+    </div>
+</div>
+
+<style>
+    .pagination li.active {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background: #b66dff;
+        border-color: #b66dff;
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    .pagination li {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background: #ffffff;
+        border-color: #ffffff;
+        color: #000000;
+        font-weight: bold;
+    }
+</style>

@@ -1,0 +1,207 @@
+﻿
+@{
+    ViewData["Title"] = "HouseDetail";
+    Layout = "~/Views/Shared/_LayoutHouse.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HouseDetail
+
+<!-- ======= Intro Single ======= -->
+<section class="intro-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="title-single-box">
+                    <h1 class="title-single">Mã nhà: @Model.thongTinNha.MaNha</h1>
+                    <span class="color-text-a">@Model.thongTinNha.DiaChiNha</span>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Home" asp-action="Index">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-controller="House" asp-action="Index">Thông tin nhà</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Mã nhà: @Model.thongTinNha.MaNha
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section><!-- End Intro Single-->
+<!-- ======= Property Single ======= -->
+<section class="property-single nav-arrow-b">
+    <div class="container">
+        <div class="row justify-content-center" style="margin-bottom:50px">
+            <div class="col-lg-8">
+                <div id="property-single-carousel" class="swiper">
+                    <div class="swiper-wrapper">
+                        <img src="../Images/@Model.thongTinNha.AnhMinhHoa" alt="">
+                    </div>
+                </div>
+
+                <div class="property-single-carousel-pagination carousel-pagination"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row justify-content-between">
+                    <div class="col-md-5 col-lg-4">
+                        <div class="property-price d-flex justify-content-center foo">
+                            <div class="card-header-c d-flex">
+                                <div class="card-box-ico">
+                                    <div class="card-title-c align-self-center">
+                                        <h5 class="title-c">@Model.thongTinNha.GiaPhong.ToString("#,##0") VND</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="property-summary">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="title-box-d section-t4">
+                                        <h3 class="title-d">Thông tin chi tiết về nhà
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="summary-list">
+                                <ul class="list">
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Mã nhà: </strong>
+                                        <span>@Model.thongTinNha.MaNha</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Địa chỉ: </strong>
+                                        <span>@Model.thongTinNha.DiaChiNha</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Loại nhà: </strong>
+                                        <span>@Model.loaiNha.TenLoai</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Đối tượng sử dụng: </strong>
+                                        <span>@Model.Dtsd.TenDtsd</span>
+                                    </li><li class="d-flex justify-content-between">
+                                        <strong>Mục đích sử dụng: </strong>
+                                        <span>@Model.Mdsd.TenMdsd</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Diên tích: </strong>
+                                        <span>
+                                            @Model.thongTinNha.DienTich
+                                        </span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Tiền điện / số: </strong>
+                                        <span>@Model.thongTinNha.TienDien.ToString("#,##0") VND</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Tiền nước / khối: </strong>
+                                        <span>@Model.thongTinNha.TienNuoc.ToString("#,##0") VND</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Tiền đặt cọc: </strong>
+                                        <span>@Model.thongTinNha.TienDatCoc.ToString("#,##0") VND</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-lg-7 section-md-t3">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="title-box-d">
+                                    <h3 class="title-d">Mô tả về nhà:</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="property-description">
+                            <p class="description color-text-a">
+                                @Model.thongTinNha.MoTaNha
+                            </p>
+                        </div>
+                        <div class="row section-t3">
+                            <div class="col-sm-12">
+                                <div class="title-box-d">
+                                    <h3 class="title-d">Các dịch vụ</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="amenities-list color-text-a">
+                            <ul class="list-a no-margin">
+                                @foreach(var item in Model.ListDichVu)
+                                {
+                                    <li>@item</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row section-t3">
+                    <div class="col-sm-12">
+                        <div class="title-box-d">
+                            <h3 class="title-d">Liên hệ với chủ nhà</h3>
+                        </div>
+                    </div>
+                </div>  
+                <div class="row" style="margin-bottom:50px">
+                    <div class="col-md-6 col-lg-4">
+                        <img src="../Images/chu/@Model.chuNha.AnhChuNha" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="property-agent">
+                            <h4 class="title-agent">@Model.chuNha.TenChuNha</h4>
+                            <p class="color-text-a">
+                                @Model.chuNha.MoTaChuNha
+                            </p>
+                            <ul class="list-unstyled">
+                                <li class="d-flex justify-content-between">
+                                    <strong>Số điện thoại:</strong>
+                                    <span class="color-text-a">@Model.chuNha.SdtchuNha</span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>Số điện thoại 2:</strong>
+                                    <span class="color-text-a">
+                                        @{
+                                            string str = "Không có";
+                                            if(Model.chuNha.SdtchuNha2 != null)
+                                            {
+                                                str = Model.chuNha.SdtchuNha2;
+                                            }
+                                        }
+                                        @str
+                                    </span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>Email:</strong>
+                                    <span class="color-text-a">@Model.chuNha.Email</span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>Địa chỉ:</strong>
+                                    <span class="color-text-a">@Model.chuNha.DiaChi</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-4">
+                        <div class="property-contact">
+                            <div class="col-md-12 mt-3">
+                                <a type="submit" class="btn btn-primary" asp-controller="Access" asp-action="Login">Thuê nhà</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End Property Single-->
+

@@ -1,0 +1,81 @@
+﻿@using QLTN.Models;
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<TaiSan>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "ThongTinTaiSan";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Danh sách tài sản</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="ThemTaiSan">Thêm mới</a>
+</p>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr class="table-danger">
+                <th>
+                    @Html.DisplayNameFor(model => model[0].TenTaiSan)
+                </th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 1;
+            }
+            @foreach (var item in Model)
+            {
+                i = i + 1;
+                string cls = "table-info";
+                if (i % 2 == 0)
+                {
+                    cls = "table-success";
+                }
+                <tr class="@cls">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenTaiSan)
+                    </td>
+                    <td>
+                        <a asp-action="SuaTaiSan" asp-route-id="@item.MaTaiSan">Sửa</a> |
+                        <a asp-action="XoaTaiSan" asp-route-id="@item.MaTaiSan">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="product__pagination">
+        @Html.PagedListPager(Model, page=>Url.Action("ThongTinNha", new{page=page}))
+    </div>
+</div>
+<style>
+    .pagination li.active {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background: #b66dff;
+        border-color: #b66dff;
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    .pagination li {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background: #ffffff;
+        border-color: #ffffff;
+        color: #000000;
+        font-weight: bold;
+    }
+</style>
+
