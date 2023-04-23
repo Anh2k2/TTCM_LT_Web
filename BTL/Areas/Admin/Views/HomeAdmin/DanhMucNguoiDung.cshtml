@@ -21,6 +21,9 @@
             <th>
                     @Html.DisplayNameFor(model => model[0].TenNguoiDung)
             </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].MatKhau)
+                </th>
             <th>
                     @Html.DisplayNameFor(model => model[0].Sdt)
             </th>
@@ -49,6 +52,9 @@
                 <tr class="@cls">
             <td>
                 @Html.DisplayFor(modelItem => item.TenNguoiDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatKhau)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Sdt)

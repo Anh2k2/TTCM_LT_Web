@@ -4,6 +4,7 @@
 create table NguoiDung(
 	MaNguoiDung int identity not null,
 	TenNguoiDung nvarchar(MAX) not null,
+	MatKhau nvarchar(MAX) not null,
 	SDT nvarchar(MAX) not null,
 	Email nvarchar(MAX) not null,
 	DiaChi nvarchar(MAX) not null,
@@ -11,7 +12,7 @@ create table NguoiDung(
 )
 
 --insert NguoiDung
-insert into NguoiDung(TenNguoiDung, SDT, Email, DiaChi) values (N'Dungx', '0987654321', 'dung@gmail.com', 'inyourheart')
+insert into NguoiDung(TenNguoiDung, MatKhau, SDT, Email, DiaChi) values (N'admin', 'admin123', '0983038982', 'admin@gmail.com', 'inyourheart')
 
 --table LoaiNha
 create table LoaiNha(

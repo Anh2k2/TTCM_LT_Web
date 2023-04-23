@@ -40,7 +40,8 @@ public partial class ThongTinNha
     public int TinhTrangThue { get; set; }
 
     [DisplayName("Ảnh minh họa: ")]
-    public string AnhMinhHoa { get; set; } = null!;
+    [RegularExpression(@"\.(jpg|jpeg|png|gif)$", ErrorMessage = "Vui lòng chỉ chọn file ảnh định dạng JPG, JPEG, PNG hoặc GIF.")]
+    public string? AnhMinhHoa { get; set; } = null!;
 
     [NotMapped]
     public IFormFile? formFile { get; set; }

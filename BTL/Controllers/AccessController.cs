@@ -14,38 +14,31 @@ namespace QLTN.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            /*if (HttpContext.Session.GetString("Username") == null)
+            if (HttpContext.Session.GetString("UserName") == null)
             {
                 return View();
             }
-            else if (HttpContext.Session.GetString("Username") == "admin")
+            else if (HttpContext.Session.GetString("UserName") == "admin")
             {
                 return RedirectToAction("index", "admin");
             }
             else
             {
                 return RedirectToAction("Index", "Home");
-            }*/
-            if (HttpContext.Session.GetString("UserName") == null)
+            }
+            /*if (HttpContext.Session.GetString("UserName") == null)
             {
                 return View();
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");*/
         }
 
         [Route("Login")]
         [HttpPost]
         public IActionResult Login(NguoiDung user)
         {
-            /*if (ModelState.IsValid)
-            {
-                db.NguoiDungs.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index", "House");
-            }
-            return View(user);*/
-            var obj = db.NguoiDungs.FirstOrDefault(x => x.TenNguoiDung == user.TenNguoiDung && x.Email == user.Email);
+            var obj = db.NguoiDungs.FirstOrDefault(x => x.TenNguoiDung == user.TenNguoiDung && x.MatKhau == user.MatKhau);
             if (obj != null)
             {
                 if (obj.MaNguoiDung == 1)

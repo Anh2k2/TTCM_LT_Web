@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QLTN.Models;
 
@@ -37,6 +38,8 @@ public partial class ChuNha
     [DisplayName("Ảnh chủ nhà: ")]
     [RegularExpression(@"\.(jpg|jpeg|png|gif)$", ErrorMessage = "Vui lòng chỉ chọn file ảnh định dạng JPG, JPEG, PNG hoặc GIF.")]
     public string AnhChuNha { get; set; } = null!;
+    [NotMapped]
+    public IFormFile? formFile { get; set; }
 
     [DisplayName("Mô tả chủ nhà: ")]
     [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$", ErrorMessage = "Mô tả chủ nhà bao gồm chữ thường, in hoa và số.")]

@@ -12,7 +12,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post" asp-action="ThemChuNhaMoi">
+        <form method="post" asp-action="ThemChuNhaMoi" class="row" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="TenChuNha" class="control-label">Ten Chu Nha</label>
@@ -45,12 +45,15 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AnhChuNha" class="control-label">Ảnh Chủ Nhà</label>
+                @*<label asp-for="AnhChuNha" class="control-label">Ảnh Chủ Nhà</label>
                 @*<input asp-for="AnhChuNha" class="form-control" />
-                <span asp-validation-for="AnhChuNha" class="text-danger"></span>*@
+                <span asp-validation-for="AnhChuNha" class="text-danger"></span>
                 <div class="form-group">
                     <input asp-for="AnhChuNha" type="file" value="Upload" class="btn btn-primary file-upload-browse input-group-append" />
-                </div>
+                </div>*@
+                <label asp-for="AnhChuNha" class="control-label"></label>
+                <input asp-for="formFile" class="form-control" />
+                <span asp-validation-for="AnhChuNha" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="MoTaChuNha" class="control-label">Mô Tả Chủ Nhà</label>

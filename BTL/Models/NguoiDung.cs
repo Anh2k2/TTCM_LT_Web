@@ -14,6 +14,9 @@ public partial class NguoiDung
     [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Tên người dùng không hợp lệ")]
     public string TenNguoiDung { get; set; } = null!;
 
+    [DisplayName("Mật khẩu: ")]
+    public string MatKhau { get; set; } = null!;
+
     [DisplayName("Số điện thoại: ")]
     [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Số điện thoại đủ 10 số")]
     public string Sdt { get; set; } = null!;

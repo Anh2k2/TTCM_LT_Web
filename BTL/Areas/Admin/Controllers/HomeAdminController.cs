@@ -64,13 +64,17 @@ namespace QLTN.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
+                thongTinNha.AnhMinhHoa = thongTinNha.formFile.FileName;               
                 db.ThongTinNhas.Add(thongTinNha);
                 db.SaveChanges();
                 return RedirectToAction("ThongTinNha");
-            } else
+            }
+            else
             {
                 return View();
             }
+            
+          
         }
 
         [Route("SuaNha")]
@@ -198,9 +202,7 @@ namespace QLTN.Areas.Admin.Controllers
             return RedirectToAction("NhaDichVu");
         }
         #endregion
-
-        #region Văn Vũ
-
+      
         #region ChuNha
         [Route("DanhMucChuNha")]
         public IActionResult DanhMucChuNha(int? page)
@@ -226,6 +228,7 @@ namespace QLTN.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                chunha.AnhChuNha = chunha.formFile.FileName;
                 db.ChuNhas.Add(chunha);
                 db.SaveChanges();
                 return RedirectToAction("DanhMucChuNha");
@@ -339,10 +342,6 @@ namespace QLTN.Areas.Admin.Controllers
         }
 
         #endregion
-
-        #endregion
-
-        #region Ngọc Quân
 
         #region DichVu
         [Route("ListDichVu")]
@@ -484,9 +483,7 @@ namespace QLTN.Areas.Admin.Controllers
             return RedirectToAction("ThongTinDTSD");
         }
         #endregion
-        #endregion
 
-        #region Dương
         #region HDN
 
         [Route("ThongTinHDN")]
@@ -622,9 +619,7 @@ namespace QLTN.Areas.Admin.Controllers
             return RedirectToAction("ListLoaiNha");
         }
         #endregion
-        #endregion
-
-        #region Hải
+    
         #region MDSD
         [Route("ThongTinMDSD")]
         public IActionResult ThongTinMDSD(int ? page)
@@ -768,8 +763,8 @@ namespace QLTN.Areas.Admin.Controllers
         }
 
         #endregion
-        #endregion
 
+        #region NhaTaiSan
         [Route("NhaTaiSan")]
         public IActionResult NhaTaiSan(int? page)
         {
@@ -841,5 +836,7 @@ namespace QLTN.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("NhaTaiSan");
         }
+
+        #endregion
     }
 }
