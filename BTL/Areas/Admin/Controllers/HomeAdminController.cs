@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
+using QLTN.Models.Authentication;
 
 namespace QLTN.Areas.Admin.Controllers
 {
@@ -14,6 +15,7 @@ namespace QLTN.Areas.Admin.Controllers
 
         QltnContext db = new QltnContext();
 
+        [Authentication]
         [Route("")]
         [Route("index")]
         public IActionResult Index()
@@ -502,7 +504,7 @@ namespace QLTN.Areas.Admin.Controllers
         public IActionResult AddHopDongNha()
         {
             ViewBag.MaNha = new SelectList(db.ThongTinNhas.ToList(), "MaNha", "MaNha");
-            ViewBag.MaNguoiDung = new SelectList(db.NguoiDungs.ToList(), "MaNguoiDung", "TenNguoiDung");
+            ViewBag.MaNguoiDung = new SelectList(db.NguoiDungs.ToList(), "MaNguoiDung", "MaNguoiDung");
             return View();
         }
 
@@ -521,7 +523,7 @@ namespace QLTN.Areas.Admin.Controllers
         public IActionResult UpdateHopDongNha(int id)
         {
             ViewBag.MaNha = new SelectList(db.ThongTinNhas.ToList(), "MaNha", "MaNha");
-            ViewBag.MaNguoiDung = new SelectList(db.NguoiDungs.ToList(), "MaNguoiDung", "TenNguoiDung");
+            ViewBag.MaNguoiDung = new SelectList(db.NguoiDungs.ToList(), "MaNguoiDung", "MaNguoiDung");
             var HopDongNha = db.HopDongNhas.Find(id);
             return View(HopDongNha);
         }

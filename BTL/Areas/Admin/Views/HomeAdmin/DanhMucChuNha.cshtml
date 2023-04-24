@@ -18,6 +18,9 @@
         <thead>
             <tr class="table-danger">
                 <th>
+                    @Html.DisplayNameFor(model => model[0].MaChuNha)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model[0].TenChuNha)
                 </th>
                 <th>
@@ -58,6 +61,9 @@
                     cls = "table-primary";
                 }
                 <tr class="@cls">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaChuNha)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.TenChuNha)
                     </td>

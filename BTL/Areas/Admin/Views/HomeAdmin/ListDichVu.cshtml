@@ -17,6 +17,9 @@
         <thead>
             <tr class="table-danger">
                 <th>
+                    @Html.DisplayNameFor(model => model[0].MaDichVu)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model[0].TenDichVu)
                 </th>
                 <th>Hành động</th>
@@ -35,6 +38,9 @@
                     cls = "table-success";
                 }
                 <tr class="@cls">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaDichVu)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.TenDichVu)
                     </td>

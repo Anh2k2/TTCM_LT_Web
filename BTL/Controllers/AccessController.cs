@@ -65,7 +65,7 @@ namespace QLTN.Controllers
             HttpContext.Session.Clear();
             HttpContext.Session.Remove("UserName");
             HttpContext.Session.Remove("UserId");
-            return RedirectToAction("Login", "Access");
+            return RedirectToAction("Index", "Guest");
         }
 
         [Route("Register")]

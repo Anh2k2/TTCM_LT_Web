@@ -19,19 +19,22 @@
     <thead>
         <tr class="table-danger">
             <th>
-                    @Html.DisplayNameFor(model => model[0].TenNguoiDung)
-            </th>
-                <th>
-                    @Html.DisplayNameFor(model => model[0].MatKhau)
-                </th>
-            <th>
-                    @Html.DisplayNameFor(model => model[0].Sdt)
+                    @Html.DisplayNameFor(model => model[0].MaNguoiDung)
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model[0].Email)
+                @Html.DisplayNameFor(model => model[0].TenNguoiDung)
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model[0].DiaChi)
+                @Html.DisplayNameFor(model => model[0].MatKhau)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Sdt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].DiaChi)
             </th>
             <th>Hành động</th>
         </tr>
@@ -50,27 +53,30 @@
                     cls = "table-primary";
                 }
                 <tr class="@cls">
-            <td>
-                @Html.DisplayFor(modelItem => item.TenNguoiDung)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MatKhau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sdt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiaChi)
-            </td>
-            <td>
-                <a asp-action="SuaNguoiDung" asp-route-maNguoiDung="@item.MaNguoiDung">Sửa</a> |
-                <a asp-action="XoaNguoiDung" asp-route-maNguoiDung="@item.MaNguoiDung">Xóa</a>
-            </td>
-        </tr>
-}
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaNguoiDung)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenNguoiDung)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MatKhau)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sdt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaChi)
+                    </td>
+                    <td>
+                        <a asp-action="SuaNguoiDung" asp-route-maNguoiDung="@item.MaNguoiDung">Sửa</a> |
+                        <a asp-action="XoaNguoiDung" asp-route-maNguoiDung="@item.MaNguoiDung">Xóa</a>
+                    </td>
+                </tr>
+            }
     </tbody>
 </table>
     <div class="product__pagination">

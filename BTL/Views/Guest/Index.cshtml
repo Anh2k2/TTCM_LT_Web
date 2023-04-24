@@ -1,7 +1,9 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutGuest.cshtml";
 }
+
 @{
     List<ChuNha> chus = ViewBag.chuNhas;
     List<ThongTinNha> nhas = ViewBag.nhas;
@@ -43,7 +45,7 @@
                             <h2 class="title-a">Danh sách nhà</h2>
                         </div>
                         <div class="title-link">
-                            <a asp-controller="House" asp-action="Index">
+                            <a asp-controller="Access" asp-action="Login">
                                 Tất cả nhà
                                 <span class="bi bi-chevron-right"></span>
                             </a>
@@ -72,7 +74,7 @@
                                         <div class="card-overlay-a-content">
                                             <div class="card-header-a">
                                                 <h2 class="card-title-a">
-                                                    <a asp-action="HouseDetail" asp-controller="House" asp-route-MaNha="@item.MaNha">
+                                                    <a asp-controller="Access" asp-action="Login">
                                                         <span class="color-b"> @item.DiaChiNha</span>
                                                     </a>
                                                 </h2>
@@ -81,7 +83,7 @@
                                                 <div class="price-box d-flex">
                                                     <span class="price-a">Giá phòng | @item.GiaPhong.ToString("#,##0") VND</span>
                                                 </div>
-                                                <a asp-action="HouseDetail" asp-controller="House" asp-route-MaNha="@item.MaNha" class="link-a">
+                                                <a asp-controller="Access" asp-action="Login">
                                                     Nhấn để xem chi tiết
                                                     <span class="bi bi-chevron-right"></span>
                                                 </a>
@@ -131,7 +133,7 @@
                             <h2 class="title-a">Chủ nhà</h2>
                         </div>
                         <div class="title-link">
-                            <a asp-controller="Host" asp-action="Index">
+                            <a asp-controller="Access" asp-action="Login">
                                 Tất cả chủ nhà
                                 <span class="bi bi-chevron-right"></span>
                             </a>
@@ -158,7 +160,7 @@
                                     <div class="card-header-d">
                                         <div class="card-title-d align-self-center">
                                             <h3 class="title-d">
-                                                <a asp-action="HostDetail" asp-controller="Host" asp-route-MaChuNha="@item.MaChuNha" class="link-two">
+                                                <a asp-controller="Access" asp-action="Login" class="link-two">
                                                     @item.TenChuNha
                                                 </a>
                                             </h3>
